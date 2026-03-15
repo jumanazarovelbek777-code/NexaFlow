@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NexaFlow — Biznesingizni avtomatlashtiruvchi zamonaviy SaaS platforma. Tezkor, ishonchli, arzon.">
+<meta property="og:title" content="NexaFlow — Biznesingizni kelajakka olib chiqing">
+<meta property="og:description" content="Eng zamonaviy SaaS yechim. 14 kunlik bepul sinov.">
+<meta property="og:type" content="website">
+<title>NexaFlow — Kelajak Platformasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsn4I0h3XXyUJAyv66GuUQ1kqCjqY1tzEOUQ&s">
+<style>
+:root {
+  --bg-deep: #07070f;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-hover: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08);
+  --border-glow: rgba(99,102,241,0.5);
+  --accent1: #6366f1;
+  --accent2: #06b6d4;
+  --accent3: #8b5cf6;
+  --grad: linear-gradient(135deg, #6366f1, #06b6d4);
+  --grad2: linear-gradient(135deg, #8b5cf6, #6366f1);
+  --text: #e2e8f0;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --radius: 18px;
+  --radius-sm: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--accent1); border-radius: 2px; }
+
+/* ─── TYPOGRAPHY ─── */
+h1,h2,h3,h4,h5 { font-family: var(--font-head); }
+
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-text2 {
+  background: var(--grad2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  33%      { transform: translateY(-24px) rotate(5deg); }
+  66%      { transform: translateY(-12px) rotate(-5deg); }
+}
+@keyframes pulse-glow {
+  0%,100% { opacity: 0.35; transform: scale(1); }
+  50%      { opacity: 0.65; transform: scale(1.1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes blob-move {
+  0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50%      { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.7s ease both; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+.scroll-reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── BUTTONS ─── */
+.btn-grad {
+  background: var(--grad);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 32px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-grad::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background: linear-gradient(135deg,#8b5cf6,#06b6d4);
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.btn-grad:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 32px rgba(99,102,241,0.45); }
+.btn-grad:hover::before { opacity:1; }
+.btn-grad span { position:relative; z-index:1; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  padding: 12px 32px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-ghost:hover { border-color: var(--accent1); color: var(--accent1); box-shadow: 0 0 20px rgba(99,102,241,0.2); }
+
+/* ─── GLASS CARD ─── */
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+.glass:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 0 32px rgba(99,102,241,0.15);
+}
+
+/* ─── SECTION LABEL ─── */
+.section-label {
+  display: inline-block;
+  background: rgba(99,102,241,0.12);
+  border: 1px solid rgba(99,102,241,0.3);
+  color: var(--accent1);
+  border-radius: 50px;
+  padding: 5px 18px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: var(--font-head);
+  margin-bottom: 16px;
+}
+
+/* ═══════════════════════════════
+   NAVBAR
+════════════════════════════════ */
+#mainNav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 18px 0;
+  transition: all 0.35s ease;
+}
+#mainNav.scrolled {
+  background: rgba(7,7,15,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+}
+.nav-logo {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-logo-icon {
+  width: 34px; height: 34px;
+  background: var(--grad);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.nav-links { list-style: none; display: flex; gap: 6px; margin: 0; padding: 0; }
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+
+.hamburger {
+  background: none; border: 1.5px solid var(--border);
+  color: var(--text); border-radius: 8px;
+  width: 40px; height: 40px;
+  display: none; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1.1rem; transition: all 0.2s;
+}
+.hamburger:hover { border-color: var(--accent1); color: var(--accent1); }
+
+.mobile-menu {
+  display: none;
+  background: rgba(7,7,15,0.97);
+  border-top: 1px solid var(--border);
+  padding: 16px 0;
+  backdrop-filter: blur(20px);
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: block; padding: 12px 24px;
+  color: var(--text-dim); text-decoration: none;
+  font-size: 1rem; font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: #fff; }
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-cta { padding: 12px 24px; }
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links { display: none; }
+  .nav-contact-btn { display: none; }
+}
+
+/* ═══════════════════════════════
+   HERO
+════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding-top: 100px;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: float 8s ease-in-out infinite, pulse-glow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+.blob1 { width: 500px; height: 500px; background: rgba(99,102,241,0.18); top: -100px; right: -150px; animation-delay: 0s; }
+.blob2 { width: 350px; height: 350px; background: rgba(6,182,212,0.15); bottom: -50px; left: -100px; animation-delay: 2s; }
+.blob3 { width: 250px; height: 250px; background: rgba(139,92,246,0.12); top: 40%; left: 40%; animation-delay: 4s; }
+
+.hero-grid-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(99,102,241,0.1);
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius: 50px; padding: 7px 18px;
+  font-size: 0.82rem; color: var(--text-dim);
+  margin-bottom: 24px;
+}
+.hero-badge-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent2);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-dim);
+  max-width: 520px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero-stats {
+  display: flex; gap: 32px; margin-top: 56px;
+  padding-top: 32px; border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.hero-stat-num {
+  font-family: var(--font-head);
+  font-size: 1.8rem; font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+.hero-visual {
+  position: relative;
+}
+.hero-card-main {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(12px);
+  animation: float 6s ease-in-out infinite;
+}
+.hero-card-float {
+  position: absolute;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 14px 20px;
+  backdrop-filter: blur(10px);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  animation: float 5s ease-in-out infinite;
+}
+.hero-card-float.f1 { top: -20px; right: -20px; animation-delay: 1s; }
+.hero-card-float.f2 { bottom: 30px; left: -30px; animation-delay: 3s; }
+
+/* ═══════════════════════════════
+   FEATURES
+════════════════════════════════ */
+#features { padding: 120px 0; }
+.feature-card {
+  padding: 32px 28px;
+  height: 100%;
+}
+.feature-icon-wrap {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(6,182,212,0.1));
+  border: 1px solid rgba(99,102,241,0.25);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  color: var(--accent1);
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+.feature-card:hover .feature-icon-wrap {
+  background: var(--grad);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 24px rgba(99,102,241,0.4);
+}
+.feature-card h5 {
+  font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;
+}
+.feature-card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.7; }
+
+/* ═══════════════════════════════
+   STATS
+════════════════════════════════ */
+#stats {
+  padding: 80px 0;
+  background: linear-gradient(180deg, transparent, rgba(99,102,241,0.04), transparent);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.stat-item { text-align: center; padding: 24px; }
+.stat-number {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label { color: var(--text-dim); font-size: 0.88rem; text-transform: uppercase; letter-spacing: 1.5px; }
+.stat-divider {
+  width: 1px; background: var(--border);
+  height: 60px; align-self: center;
+}
+
+/* ═══════════════════════════════
+   HOW IT WORKS
+════════════════════════════════ */
+#how { padding: 120px 0; }
+.step-card {
+  text-align: center;
+  padding: 40px 28px;
+  position: relative;
+}
+.step-num {
+  width: 56px; height: 56px;
+  background: var(--grad);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head);
+  font-size: 1.2rem; font-weight: 800;
+  color: #fff;
+  margin: 0 auto 24px;
+  box-shadow: 0 0 24px rgba(99,102,241,0.4);
+}
+.step-connector {
+  position: absolute; top: 68px; right: -50%;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--accent1), transparent);
+  display: none;
+}
+@media (min-width: 992px) { .step-connector { display: block; } }
+.step-card h5 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+.step-card p { color: var(--text-dim); font-size: 0.9rem; }
+
+/* ═══════════════════════════════
+   TESTIMONIALS
+════════════════════════════════ */
+#testimonials { padding: 120px 0; }
+.testimonial-card { padding: 32px 28px; height: 100%; }
+.testi-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 1.1rem; font-weight: 800;
+  color: #fff; margin-bottom: 20px; flex-shrink: 0;
+}
+.testi-stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 14px; }
+.testi-text { color: var(--text-dim); font-size: 0.92rem; line-height: 1.7; margin-bottom: 20px; }
+.testi-name { font-weight: 700; font-size: 0.95rem; }
+.testi-role { color: var(--text-muted); font-size: 0.82rem; }
+
+/* ═══════════════════════════════
+   PRICING
+════════════════════════════════ */
+#pricing { padding: 120px 0; }
+.price-toggle {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 50px; padding: 6px 8px;
+  margin-bottom: 64px;
+}
+.price-toggle-btn {
+  padding: 8px 24px; border-radius: 50px;
+  font-family: var(--font-head); font-weight: 600;
+  font-size: 0.88rem; cursor: pointer;
+  transition: all 0.25s; border: none;
+  background: transparent; color: var(--text-muted);
+}
+.price-toggle-btn.active {
+  background: var(--grad); color: #fff;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.35);
+}
+.price-badge {
+  background: rgba(6,182,212,0.15);
+  color: var(--accent2);
+  border: 1px solid rgba(6,182,212,0.3);
+  border-radius: 50px; padding: 3px 12px;
+  font-size: 0.75rem; font-weight: 600;
+}
+
+.pricing-card { padding: 36px 32px; height: 100%; position: relative; }
+.pricing-card.featured {
+  transform: scale(1.04);
+  background: rgba(99,102,241,0.08);
+  border-color: rgba(99,102,241,0.4);
+  box-shadow: 0 0 48px rgba(99,102,241,0.2);
+}
+.popular-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--grad); color: #fff;
+  border-radius: 50px; padding: 4px 18px;
+  font-size: 0.75rem; font-weight: 700;
+  white-space: nowrap;
+}
+.price-amount {
+  font-family: var(--font-head);
+  font-size: 3rem; font-weight: 800; line-height: 1;
+}
+.price-amount sup { font-size: 1.2rem; font-weight: 600; vertical-align: super; }
+.price-amount sub { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+.price-name { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 8px; }
+.price-desc { color: var(--text-dim); font-size: 0.88rem; margin-bottom: 28px; }
+.price-features { list-style: none; padding: 0; margin-bottom: 32px; }
+.price-features li {
+  padding: 8px 0; color: var(--text-dim); font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.price-features li:last-child { border-bottom: none; }
+.price-check { color: var(--accent1); font-size: 0.9rem; flex-shrink: 0; }
+.price-x { color: var(--text-muted); font-size: 0.9rem; flex-shrink: 0; }
+
+/* ═══════════════════════════════
+   FAQ
+════════════════════════════════ */
+#faq { padding: 120px 0; }
+.accordion-item {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.accordion-button {
+  background: transparent !important;
+  color: var(--text) !important;
+  font-family: var(--font-head) !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  box-shadow: none !important;
+  padding: 20px 24px !important;
+}
+.accordion-button::after {
+  filter: invert(1) brightness(0.7) sepia(1) hue-rotate(200deg) !important;
+  transition: transform 0.3s ease !important;
+}
+.accordion-button:not(.collapsed) { color: var(--accent1) !important; }
+.accordion-body {
+  background: transparent !important;
+  color: var(--text-dim) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.8 !important;
+  padding: 4px 24px 20px !important;
+}
+
+/* ═══════════════════════════════
+   CONTACT
+════════════════════════════════ */
+#contact { padding: 120px 0; }
+.contact-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px; padding: 52px 48px;
+  backdrop-filter: blur(12px);
+}
+@media (max-width: 768px) { .contact-wrap { padding: 32px 24px; } }
+
+.form-control, .form-select {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: 12px !important;
+  padding: 14px 18px !important;
+  font-size: 0.92rem !important;
+  transition: all 0.25s !important;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--accent1) !important;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15) !important;
+  background: rgba(99,102,241,0.06) !important;
+}
+.form-control::placeholder { color: var(--text-muted) !important; }
+.form-label { color: var(--text-dim); font-size: 0.85rem; font-weight: 500; margin-bottom: 8px; }
+
+/* ═══════════════════════════════
+   CTA BANNER
+════════════════════════════════ */
+#cta-banner {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(99,102,241,0.12) 0%, rgba(6,182,212,0.08) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.cta-deco {
+  position: absolute; border-radius: 50%;
+  filter: blur(60px); pointer-events: none;
+}
+.cta-deco1 { width:300px; height:300px; background:rgba(99,102,241,0.2); top:-80px; left:-80px; }
+.cta-deco2 { width:250px; height:250px; background:rgba(6,182,212,0.15); bottom:-60px; right:-60px; }
+
+.cta-input-group {
+  display: flex; gap: 10px; max-width: 460px; margin: 0 auto;
+  flex-wrap: wrap; justify-content: center;
+}
+.cta-input {
+  flex: 1; min-width: 220px;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 50px !important;
+  color: var(--text) !important;
+  padding: 13px 24px !important;
+}
+.cta-input:focus { border-color: var(--accent1) !important; box-shadow: 0 0 0 3px rgba(99,102,241,0.15) !important; }
+.cta-input::placeholder { color: var(--text-muted) !important; }
+
+/* ═══════════════════════════════
+   FOOTER
+════════════════════════════════ */
+#footer {
+  padding: 80px 0 32px;
+  border-top: 1px solid var(--border);
+}
+.footer-logo {
+  font-family: var(--font-head); font-size: 1.3rem; font-weight: 800;
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 14px; text-decoration: none;
+}
+.footer-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; max-width: 220px; }
+.footer-col-title {
+  font-family: var(--font-head); font-weight: 700; font-size: 0.88rem;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--text); margin-bottom: 16px;
+}
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  color: var(--text-muted); text-decoration: none; font-size: 0.88rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent1); }
+.social-links { display: flex; gap: 10px; margin-top: 6px; }
+.social-btn {
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 1rem;
+  text-decoration: none; transition: all 0.25s;
+}
+.social-btn:hover { background: var(--grad); color: #fff; border-color: transparent; }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  margin-top: 64px; padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { color: var(--text-muted); font-size: 0.83rem; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="mainNav">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#hero" class="nav-logo grad-text text-decoration-none">
+        <div class="nav-logo-icon"><i class="bi bi-lightning-charge-fill text-white"></i></div>
+        NexaFlow
+      </a>
+      <ul class="nav-links d-none d-lg-flex">
+        <li><a href="#features">Imkoniyatlar</a></li>
+        <li><a href="#how">Qanday ishlaydi</a></li>
+        <li><a href="#pricing">Narxlar</a></li>
+        <li><a href="#faq">Savol-javob</a></li>
+        <li><a href="#contact">Aloqa</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn-grad nav-contact-btn d-none d-lg-block" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          <span><i class="bi bi-arrow-right-circle me-2"></i>Bog'lanish</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features">Imkoniyatlar</a>
+    <a href="#how">Qanday ishlaydi</a>
+    <a href="#pricing">Narxlar</a>
+    <a href="#faq">Savol-javob</a>
+    <a href="#contact">Aloqa</a>
+    <div class="mobile-cta">
+      <button class="btn-grad w-100"><span>Bepul boshlash</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-badge animate-fadeInUp">
+          <div class="hero-badge-dot"></div>
+          <span>Yangi versiya 3.0 chiqdi</span>
+        </div>
+        <h1 class="hero-title animate-fadeInUp delay-1">
+          Biznesingizni<br>
+          <span class="grad-text">Avtomatlashtiring</span><br>
+          — Tezroq O'sing
+        </h1>
+        <p class="hero-sub animate-fadeInUp delay-2">
+          NexaFlow — jarayonlaringizni raqamlashtirish, jamoangizni birlashtirish va natijalarni oshirishning eng aqlli yo'li.
+        </p>
+        <div class="hero-ctas animate-fadeInUp delay-3">
+          <button class="btn-grad" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            <span><i class="bi bi-rocket-takeoff me-2"></i>Bepul boshlash</span>
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">
+            <i class="bi bi-play-circle me-2"></i>Demo ko'rish
+          </button>
+        </div>
+        <div class="hero-stats animate-fadeInUp delay-4">
+          <div>
+            <div class="hero-stat-num">12K+</div>
+            <div class="hero-stat-label">Foydalanuvchi</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">99.9%</div>
+            <div class="hero-stat-label">Uptime</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">4.9★</div>
+            <div class="hero-stat-label">Reyting</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 hero-visual animate-fadeInUp delay-3 d-none d-lg-block">
+        <div style="position:relative; padding: 20px 30px;">
+          <div class="hero-card-main">
+            <div class="d-flex align-items-center gap-3 mb-4">
+              <div style="width:36px;height:36px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                <i class="bi bi-bar-chart-line-fill text-white"></i>
+              </div>
+              <div>
+                <div style="font-family:var(--font-head);font-weight:700;font-size:0.95rem;">Analitika paneli</div>
+                <div style="color:var(--text-muted);font-size:0.78rem;">Real vaqt ma'lumotlari</div>
+              </div>
+              <div class="ms-auto" style="background:rgba(16,185,129,0.15);color:#10b981;border-radius:6px;padding:3px 10px;font-size:0.75rem;font-weight:700;">+24%</div>
+            </div>
+            <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:12px;overflow:hidden;">
+              <div style="width:78%;height:100%;background:var(--grad);border-radius:4px;"></div>
+            </div>
+            <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:12px;overflow:hidden;">
+              <div style="width:55%;height:100%;background:linear-gradient(90deg,#8b5cf6,#6366f1);border-radius:4px;"></div>
+            </div>
+            <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:24px;overflow:hidden;">
+              <div style="width:91%;height:100%;background:linear-gradient(90deg,#06b6d4,#6366f1);border-radius:4px;"></div>
+            </div>
+            <div class="d-flex gap-2 flex-wrap">
+              <div style="background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.25);border-radius:8px;padding:10px 16px;flex:1;text-align:center;">
+                <div style="font-family:var(--font-head);font-weight:800;font-size:1.3rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">1,284</div>
+                <div style="font-size:0.72rem;color:var(--text-muted);">Buyurtmalar</div>
+              </div>
+              <div style="background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.25);border-radius:8px;padding:10px 16px;flex:1;text-align:center;">
+                <div style="font-family:var(--font-head);font-weight:800;font-size:1.3rem;color:var(--accent2);">$48.2K</div>
+                <div style="font-size:0.72rem;color:var(--text-muted);">Daromad</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-card-float f1">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check-circle-fill" style="color:#10b981;"></i>
+              <span style="font-size:0.82rem;">Yangi mijoz qo'shildi</span>
+            </div>
+          </div>
+          <div class="hero-card-float f2">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-lightning-fill" style="color:#f59e0b;"></i>
+              <span style="font-size:0.82rem;">Avtomatlashtirish faollashdi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section id="features">
+  <div class="container">
+    <div class="text-center mb-5 scroll-reveal">
+      <div class="section-label">Imkoniyatlar</div>
+      <h2 class="display-5 fw-bold mb-3">Barcha kerakli <span class="grad-text">vositalar</span> bir joyda</h2>
+      <p class="text-muted mx-auto" style="max-width:520px;">Murakkab jarayonlarni soddalashtiring va jamoangizning samaradorligini ikki barobar oshiring.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 scroll-reveal" style="transition-delay:0.1s">
+        <div class="glass feature-card">
+          <div class="feature-icon-wrap"><i class="bi bi-lightning-charge-fill"></i></div>
+          <h5>Tezkor avtomatlashtirish</h5>
+          <p>Takrorlanuvchi vazifalarni bir marta sozlab qo'ying va vaqtingizni tejang. Kod yozmasdan ishlaydigan workflow.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 scroll-reveal" style="transition-delay:0.2s">
+        <div class="glass feature-card">
+          <div class="feature-icon-wrap"><i class="bi bi-bar-chart-fill"></i></div>
+          <h5>Real vaqt analitikasi</h5>
+          <p>Biznesingizning har bir raqamini real vaqtda kuzating. Interaktiv dashboard va batafsil hisobotlar.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 scroll-reveal" style="transition-delay:0.3s">
+        <div class="glass feature-card">
+          <div class="feature-icon-wrap"><i class="bi bi-shield-lock-fill"></i></div>
+          <h5>Bank darajasida xavfsizlik</h5>
+          <p>256-bit shifrlash, ikki bosqichli autentifikatsiya va GDPR muvofiqligini kafolatlaymiz.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 scroll-reveal" style="transition-delay:0.1s">
+        <div class="glass feature-card">
+          <div class="feature-icon-wrap"><i class="bi bi-people-fill"></i></div>
+          <h5>Jamoa hamkorligi</h5>
+          <p>Bir xil loyihada bir vaqtda ishlang. Vazifalar, izohlar va faoliyat tarixi — hammasi sinxronlashgan.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 scroll-reveal" style="transition-delay:0.2s">
+        <div class="glass feature-card">
+          <div class="feature-icon-wrap"><i class="bi bi-plug-fill"></i></div>
+          <h5>200+ integratsiya</h5>
+          <p>Slack, Telegram, Google Workspace, CRM va yana yuzlab xizmatlar bilan osongina ulanadi.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 scroll-reveal" style="transition-delay:0.3s">
+        <div class="glass feature-card">
+          <div class="feature-icon-wrap"><i class="bi bi-phone-fill"></i></div>
+          <h5>Mobil ilova</h5>
+          <p>iOS va Android uchun optimallashtirilgan. Istalgan joydan ishlang, hech narsa siz dan qochib ketmaydi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section id="stats">
+  <div class="container">
+    <div class="row justify-content-center align-items-center g-0">
+      <div class="col-6 col-lg-3 scroll-reveal">
+        <div class="stat-item">
+          <div class="stat-number" data-target="12000" data-suffix="K+">0</div>
+          <div class="stat-label">Faol foydalanuvchi</div>
+        </div>
+      </div>
+      <div class="d-none d-lg-flex col-lg-auto">
+        <div class="stat-divider"></div>
+      </div>
+      <div class="col-6 col-lg-3 scroll-reveal" style="transition-delay:0.15s">
+        <div class="stat-item">
+          <div class="stat-number" data-target="98" data-suffix="%">0</div>
+          <div class="stat-label">Mijozlar mamnuniyati</div>
+        </div>
+      </div>
+      <div class="d-none d-lg-flex col-lg-auto">
+        <div class="stat-divider"></div>
+      </div>
+      <div class="col-6 col-lg-3 scroll-reveal" style="transition-delay:0.3s">
+        <div class="stat-item">
+          <div class="stat-number" data-target="5" data-suffix="M+">0</div>
+          <div class="stat-label">Bajarilgan vazifa</div>
+        </div>
+      </div>
+      <div class="d-none d-lg-flex col-lg-auto">
+        <div class="stat-divider"></div>
+      </div>
+      <div class="col-6 col-lg-3 scroll-reveal" style="transition-delay:0.45s">
+        <div class="stat-item">
+          <div class="stat-number" data-target="99.9" data-suffix="%">0</div>
+          <div class="stat-label">Uptime kafolati</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section id="how">
+  <div class="container">
+    <div class="text-center mb-5 scroll-reveal">
+      <div class="section-label">Jarayon</div>
+      <h2 class="display-5 fw-bold mb-3">Boshlash <span class="grad-text2">juda oson</span></h2>
+      <p class="text-muted mx-auto" style="max-width:500px;">3 oddiy qadamda platforma sozlanadi va siz ishlashga tayyor bo'lasiz.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4 scroll-reveal">
+        <div class="glass step-card">
+          <div class="step-num">1</div>
+          <h5>Ro'yxatdan o'ting</h5>
+          <p class="text-muted" style="font-size:0.9rem;">Email manzilingiz bilan 30 soniyada hisob yarating. Kredit karta talab qilinmaydi.</p>
+        </div>
+      </div>
+      <div class="col-md-4 scroll-reveal" style="transition-delay:0.2s">
+        <div class="glass step-card">
+          <div class="step-num">2</div>
+          <h5>Asboblarni ulang</h5>
+          <p class="text-muted" style="font-size:0.9rem;">Ishlatadiganingiz xizmatlarni bir marta ulang. Avtomatik sinxronizatsiya boshlaydi.</p>
+        </div>
+      </div>
+      <div class="col-md-4 scroll-reveal" style="transition-delay:0.4s">
+        <div class="glass step-card">
+          <div class="step-num">3</div>
+          <h5>Natijani ko'ring</h5>
+          <p class="text-muted" style="font-size:0.9rem;">Birinchi avtomatlashtirmani ishga tushiring va vaqtingiz qanday tejalaychanini kuzating.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="text-center mb-5 scroll-reveal">
+      <div class="section-label">Sharhlar</div>
+      <h2 class="display-5 fw-bold mb-3">Mijozlarimiz <span class="grad-text">nima deydi</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 scroll-reveal" style="transition-delay:0.1s">
+        <div class="glass testimonial-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="testi-avatar">AB</div>
+            <div>
+              <div class="testi-name">Aziz Baxtiyorov</div>
+              <div class="testi-role">Marketing Direktori, TechStart</div>
+            </div>
+          </div>
+          <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="testi-text">"NexaFlow tufayli jamoamizning samaradorligi 3 barobar oshdi. Hozir bir xodim oldin uch kishining ishini qilmoqda. Ilovani hammasiga tavsiya qilaman."</p>
+        </div>
+      </div>
+      <div class="col-md-4 scroll-reveal" style="transition-delay:0.2s">
+        <div class="glass testimonial-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="testi-avatar" style="background:var(--grad2)">MN</div>
+            <div>
+              <div class="testi-name">Malika Normatova</div>
+              <div class="testi-role">CEO, DigitalEdge UZ</div>
+            </div>
+          </div>
+          <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="testi-text">"Biz 6 oyda platformani sinab ko'rdik. Mijoz bilan muloqot yanada tezlashdi, va xarajatlarimiz 40% ga kamaydi. Bu haqiqatan ham aqlli investitsiya."</p>
+        </div>
+      </div>
+      <div class="col-md-4 scroll-reveal" style="transition-delay:0.3s">
+        <div class="glass testimonial-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#06b6d4,#6366f1)">JT</div>
+            <div>
+              <div class="testi-name">Jasur Toshmatov</div>
+              <div class="testi-role">CTO, Nexus Solutions</div>
+            </div>
+          </div>
+          <div class="testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+          <p class="testi-text">"Texnik integrasiyasi juda oson bo'ldi. API dokumentatsiyasi zo'r, support jamoasi har doim javob beradi. Developer sifatida men bu platformani sevib qoldim."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section id="pricing">
+  <div class="container">
+    <div class="text-center scroll-reveal">
+      <div class="section-label">Narxlar</div>
+      <h2 class="display-5 fw-bold mb-3">Siz uchun <span class="grad-text">qulay tarif</span></h2>
+      <p class="text-muted mb-4">14 kun bepul sinab ko'ring. Kredit karta kerak emas.</p>
+      <div class="price-toggle mb-5">
+        <button class="price-toggle-btn active" id="btnMonthly" onclick="togglePricing('monthly')">Oylik</button>
+        <button class="price-toggle-btn" id="btnYearly" onclick="togglePricing('yearly')">
+          Yillik <span class="price-badge ms-2">-20%</span>
+        </button>
+      </div>
+    </div>
+    <div class="row g-4 align-items-stretch justify-content-center">
+      <div class="col-md-4 scroll-reveal" style="transition-delay:0.1s">
+        <div class="glass pricing-card h-100">
+          <div class="price-name">Boshlang'ich</div>
+          <div class="price-amount mb-1">
+            <sup>$</sup><span class="monthly-price">19</span><span class="yearly-price" style="display:none">15</span><sub>/oy</sub>
+          </div>
+          <p class="price-desc">Yakka tadbirkorlar va kichik jamoalar uchun.</p>
+          <ul class="price-features">
+            <li><i class="bi bi-check-circle-fill price-check"></i>5 ta foydalanuvchi</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>10 ta avtomatlashtirish</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>5 GB saqlash</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>Email qo'llab-quvvatlash</li>
+            <li><i class="bi bi-x-circle price-x"></i>API integratsiya</li>
+            <li><i class="bi bi-x-circle price-x"></i>Maxsus domenlar</li>
+          </ul>
+          <button class="btn-ghost w-100">Boshlash</button>
+        </div>
+      </div>
+      <div class="col-md-4 scroll-reveal" style="transition-delay:0.2s">
+        <div class="glass pricing-card featured h-100">
+          <div class="popular-badge">⭐ Eng mashhur</div>
+          <div class="price-name mt-2">Pro</div>
+          <div class="price-amount mb-1">
+            <sup>$</sup><span class="monthly-price">49</span><span class="yearly-price" style="display:none">39</span><sub>/oy</sub>
+          </div>
+          <p class="price-desc">O'sib borayotgan bizneslar uchun eng yaxshi tanlov.</p>
+          <ul class="price-features">
+            <li><i class="bi bi-check-circle-fill price-check"></i>25 ta foydalanuvchi</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>Cheksiz avtomatlashtirish</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>50 GB saqlash</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>24/7 prioritet qo'llab-quvvatlash</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>API integratsiya</li>
+            <li><i class="bi bi-x-circle price-x"></i>Maxsus domenlar</li>
+          </ul>
+          <button class="btn-grad w-100"><span>Hoziroq boshlash</span></button>
+        </div>
+      </div>
+      <div class="col-md-4 scroll-reveal" style="transition-delay:0.3s">
+        <div class="glass pricing-card h-100">
+          <div class="price-name">Enterprise</div>
+          <div class="price-amount mb-1">
+            <sup>$</sup><span class="monthly-price">129</span><span class="yearly-price" style="display:none">99</span><sub>/oy</sub>
+          </div>
+          <p class="price-desc">Yirik kompaniyalar uchun to'liq yechim.</p>
+          <ul class="price-features">
+            <li><i class="bi bi-check-circle-fill price-check"></i>Cheksiz foydalanuvchi</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>Cheksiz avtomatlashtirish</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>1 TB saqlash</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>Shaxsiy menejer</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>API integratsiya</li>
+            <li><i class="bi bi-check-circle-fill price-check"></i>Maxsus domenlar</li>
+          </ul>
+          <button class="btn-ghost w-100">Murojaat qilish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="container">
+    <div class="text-center mb-5 scroll-reveal">
+      <div class="section-label">Savol-javob</div>
+      <h2 class="display-5 fw-bold mb-3">Ko'p beriladigan <span class="grad-text">savollar</span></h2>
+    </div>
+    <div class="row g-3 scroll-reveal">
+      <div class="col-lg-6">
+        <div class="accordion" id="faqLeft">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                Bepul sinov davri qancha?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqLeft">
+              <div class="accordion-body">14 kunlik to'liq bepul sinov davri beriladi. Kredit karta yoki to'lov ma'lumotlari talab qilinmaydi. Sinov davomida barcha Pro imkoniyatlardan foydalanishingiz mumkin.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+                Tarifni o'zgartirish mumkinmi?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+              <div class="accordion-body">Ha, istalgan vaqtda tarifni yuqoriga yoki pastga o'zgartirishingiz mumkin. Farq miqdori avtomatik hisoblanadi va keyingi to'lov davrida qo'llaniladi.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                Ma'lumotlarim xavfsizmi?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+              <div class="accordion-body">Ha. Biz 256-bit AES shifrlash, GDPR muvofiqligini kafolatlaymiz. Ma'lumotlaringiz hech qachon uchinchi tomonlarga sotilmaydi. Kunlik zaxira nusxalash ham amalga oshiriladi.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="accordion" id="faqRight">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+                Qanday to'lov usullari qabul qilinadi?
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+              <div class="accordion-body">Visa, Mastercard, Payme, Click va bank o'tkazmasi orqali to'lash mumkin. Yillik to'lovda 20% chegirma beriladi.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">
+                Texnik yordam qanchalik tez?
+              </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+              <div class="accordion-body">Pro va Enterprise foydalanuvchilarga 24/7 Telegram va email orqali yordam ko'rsatiladi. Odatda 30 daqiqa ichida javob beramiz. Boshlang'ich tarifda email orqali ish kunlari javob beriladi.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">
+                Bekor qilish jarayoni qanday?
+              </button>
+            </h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+              <div class="accordion-body">Istalgan vaqtda hisob sozlamalaridan obunani bekor qilishingiz mumkin. Joriy to'lov davrining oxirigacha xizmatdan foydalanishda davom etasiz. Ma'lumotlaringiz 30 kun saqlanadi.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="container">
+    <div class="text-center mb-5 scroll-reveal">
+      <div class="section-label">Aloqa</div>
+      <h2 class="display-5 fw-bold mb-3">Biz bilan <span class="grad-text">bog'laning</span></h2>
+      <p class="text-muted">Savollaringiz bormi? Tez orada javob beramiz.</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 scroll-reveal">
+        <div class="contact-wrap">
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Ismingiz</label>
+                <input type="text" class="form-control" id="name" placeholder="Aziz Karimov" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Telefon raqam</label>
+                <input type="tel" class="form-control" id="phone" placeholder="+998 90 123 45 67" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Email manzil</label>
+                <input type="email" class="form-control" id="email" placeholder="aziz@example.com" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Xabaringiz</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Savollaringiz yoki takliflaringizni yozing..." required style="resize:vertical;min-height:120px;"></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-grad w-100" id="submitBtn" style="min-height:52px;font-size:1rem;">
+                  <span><i class="bi bi-send me-2"></i>Xabar yuborish</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BANNER ═══ -->
+<section id="cta-banner">
+  <div class="cta-bg"></div>
+  <div class="cta-deco cta-deco1"></div>
+  <div class="cta-deco cta-deco2"></div>
+  <div class="container position-relative text-center scroll-reveal">
+    <div class="section-label">Hoziroq boshlang</div>
+    <h2 class="display-5 fw-bold mb-3">Biznesingizni <span class="grad-text">yangi pog'onaga</span> olib chiqing</h2>
+    <p class="text-muted mb-5 mx-auto" style="max-width:460px;">14 kunlik bepul sinov. Kredit karta kerak emas. Istalgan vaqtda bekor qilish mumkin.</p>
+    <div class="cta-input-group">
+      <input type="email" class="form-control cta-input" placeholder="Email manzilingizni kiriting">
+      <button class="btn-grad" style="white-space:nowrap"><span><i class="bi bi-arrow-right me-2"></i>Boshlash</span></button>
+    </div>
+    <p class="mt-3" style="font-size:0.8rem;color:var(--text-muted);">
+      <i class="bi bi-shield-check me-1" style="color:var(--accent1)"></i>
+      Spam yo'q. Xavfsiz. Istalgan vaqtda bekor qilish.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-3 col-md-6">
+        <a href="#hero" class="footer-logo grad-text text-decoration-none">
+          <div class="nav-logo-icon"><i class="bi bi-lightning-charge-fill text-white"></i></div>
+          NexaFlow
+        </a>
+        <p class="footer-desc">Zamonaviy bizneslar uchun aqlli avtomatlashtirish platformasi.</p>
+        <div class="social-links mt-3">
+          <a href="#" class="social-btn"><i class="bi bi-github"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-telegram"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <div class="footer-col-title">Mahsulot</div>
+        <ul class="footer-links">
+          <li><a href="#features">Imkoniyatlar</a></li>
+          <li><a href="#pricing">Narxlar</a></li>
+          <li><a href="#how">Qanday ishlaydi</a></li>
+          <li><a href="#">Yangiliklar</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <div class="footer-col-title">Kompaniya</div>
+        <ul class="footer-links">
+          <li><a href="#">Biz haqimizda</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Karyera</a></li>
+          <li><a href="#contact">Aloqa</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <div class="footer-col-title">Resurslar</div>
+        <ul class="footer-links">
+          <li><a href="#">Dokumentatsiya</a></li>
+          <li><a href="#">API ma'lumotnoma</a></li>
+          <li><a href="#">Tutorial</a></li>
+          <li><a href="#">Hamjamiyat</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6 col-6">
+        <div class="footer-col-title">Qonuniy</div>
+        <ul class="footer-links">
+          <li><a href="#">Maxfiylik siyosati</a></li>
+          <li><a href="#">Foydalanish shartlari</a></li>
+          <li><a href="#">Cookie siyosati</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 NexaFlow. Barcha huquqlar himoyalangan.</span>
+      <span class="footer-copy">Uzbekiston'da ❤️ bilan yaratildi</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ─── NAVBAR SCROLL ─── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ─── HAMBURGER ─── */
+document.getElementById('hamburger').addEventListener('click', function() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+  this.innerHTML = menu.classList.contains('open') ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+});
+document.querySelectorAll('#mobileMenu a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').innerHTML = '<i class="bi bi-list"></i>';
+  });
+});
+
+/* ─── SMOOTH SCROLL ─── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ─── INTERSECTION OBSERVER ─── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+/* ─── ANIMATED COUNTER ─── */
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 2000;
+  const step = 16;
+  const increment = target / (duration / step);
+  let current = 0;
+  const isFloat = target % 1 !== 0;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    if (suffix.includes('K')) {
+      el.textContent = Math.floor(current / 1000) + suffix;
+    } else if (suffix.includes('M')) {
+      el.textContent = Math.floor(current) + suffix;
+    } else {
+      el.textContent = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
+    }
+  }, step);
+}
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.stat-number').forEach(animateCounter);
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+const statsSection = document.getElementById('stats');
+if (statsSection) statsObserver.observe(statsSection);
+
+/* ─── PRICING TOGGLE ─── */
+function togglePricing(type) {
+  document.getElementById('btnMonthly').classList.toggle('active', type === 'monthly');
+  document.getElementById('btnYearly').classList.toggle('active', type === 'yearly');
+  document.querySelectorAll('.monthly-price').forEach(el => el.style.display = type === 'monthly' ? '' : 'none');
+  document.querySelectorAll('.yearly-price').forEach(el => el.style.display = type === 'yearly' ? '' : 'none');
+}
+
+/* ─── TOAST ─── */
+function showToast(message, type) {
+  const toastEl = document.createElement('div');
+  toastEl.className = `toast align-items-center text-white bg-${type} border-0 position-fixed bottom-0 end-0 m-3`;
+  toastEl.style.zIndex = '9999';
+  toastEl.innerHTML = `
+    <div class="d-flex">
+      <div class="toast-body">${message}</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>`;
+  document.body.appendChild(toastEl);
+  const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+  toast.show();
+  toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+}
+
+/* ─── TELEGRAM FORM ─── */
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Yuborilmoqda...';
+  btn.disabled = true;
+
+  const name    = document.getElementById('name').value;
+  const phone   = document.getElementById('phone').value;
+  const email   = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
+  const text = `📬 <b>YANGI ARIZA!</b>\n\n👤 Ism: ${name}\n📞 Telefon: ${phone}\n📧 Email: ${email}\n💬 Xabar: ${message}\n\n🌐 Sayt: ${window.location.href}`;
+
+  try {
+    const response = await fetch(`https://api.telegram.org/bot[TELEGRAM_BOT_TOKEN]/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: '[TELEGRAM_CHAT_ID]',
+        text: text,
+        parse_mode: 'HTML'
+      })
+    });
+    if (response.ok) {
+      showToast('✅ Xabaringiz yuborildi! Tez orada bog\'lanamiz.', 'success');
+      this.reset();
+    } else {
+      showToast('❌ Xato yuz berdi. Qaytadan urinib ko\'ring.', 'danger');
+    }
+  } catch (error) {
+    showToast('⚠️ Internet bilan muammo. Tekshiring.', 'danger');
+  }
+
+  btn.innerHTML = originalHTML;
+  btn.disabled = false;
+});
+</script>
+</body>
+</html>
